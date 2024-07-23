@@ -1,6 +1,6 @@
 /*
 Sai Avula
-7/22/2024
+3.20.24
 Calculator.java
 Count the number of times you click a button
 */
@@ -56,6 +56,7 @@ public class Calculator{
         operator.setText("*");
         operator.setEditable(false);
         frame.add(operator);
+
         num2 = new JTextArea();
         num2.setText(two);
         num2.setEditable(false);
@@ -118,6 +119,8 @@ public class Calculator{
                 clear.addActionListener(bhandler);
             }
         }
+
+
         arrayBtn[0] = new JButton("0");
         arrayBtn[0].setBackground(Color.white);
         frame.add(arrayBtn[0]);
@@ -144,13 +147,11 @@ public class Calculator{
         frame.add(JButtonEqual);
         frame.setVisible(true);
 
-
-
     }
 
     class ButtonHandler2 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-           String command = e.getActionCommand();
+            String command = e.getActionCommand();
 
             if(command.equals("CLR"))
             {
@@ -172,11 +173,73 @@ public class Calculator{
                 System.out.println("hi");
                 bool = true;
                 operator.setText(command);
-                if (command.equals("/")) divide = true;
-                if (command.equals("*")) multiply = true;
-                if (command.equals("-")) subtract = true;
-                if (command.equals("+")) add = true;
+                if (command.equals("/")) 
+                {
+                    divide = true;
+                }
+
+                if (command.equals("*")) 
+                {
+                    multiply = true;
+                }
+
+                if (command.equals("-")) 
+                {
+                    subtract = true;
+                }
+
+                if (command.equals("+")) 
+                {
+                    add = true;
+                }
             }
+            else if(command.equals("RNDM"))
+            {
+                int temp = (int)(Math.random() * 101) + 100;
+                one = temp + "";
+                num.setText(one);
+            }
+            else if(!bool)
+            {
+                if(!fin1 && (command.equals("0") ||command.equals("1")|| command.equals("2")|| command.equals("3")|| command.equals("4")|| command.equals("5")|| command.equals("6")|| command.equals("7")|| command.equals("8")|| command.equals("9")))
+                {
+                    one = command;
+                    num.setText(one);
+                    fin1 = true;
+                }
+                else if(fin1)
+                {
+                    one += command;
+                    num.setText(one);
+                }
+            }
+            else if(bool && !command.equals("="))
+            {
+                System.out.println("hi1");
+                if(!fin2 && (command.equals("0") ||command.equals("1")|| command.equals("2")|| command.equals("3")|| command.equals("4")|| command.equals("5")|| command.equals("6")|| command.equals("7")|| command.equals("8")|| command.equals("9")))
+                {
+                    two = command;
+                    num2.setText(two);
+                    fin2 = true;
+                }
+                else if(fin2)
+                {
+                    two += command;
+                    num2.setText(two);
+                }
+            }
+            else if(command.equals("="))
+            {
+                int first = Integer.parseInt(one);
+                int second = Integer.parseInt(two);
+                int ans1 = 0;
+                if(add) ans1 = first + second;
+                if(subtract) ans1 = first - second;
+                if(multiply) ans1 = first * second;
+                if(divide) ans1 = first/second;
+                ans.setText(ans1 + "");
+            }
+
         }
     }
 }
