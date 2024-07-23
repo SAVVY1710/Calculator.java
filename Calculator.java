@@ -56,6 +56,68 @@ public class Calculator{
         operator.setText("*");
         operator.setEditable(false);
         frame.add(operator);
+        num2 = new JTextArea();
+        num2.setText(two);
+        num2.setEditable(false);
+        frame.add(num2);
+
+        equals = new JTextArea();
+        equals.setText("=");
+        equals.setEditable(false);
+        frame.add(equals);
+
+        ans = new JTextArea();
+        ans.setText(answer);
+        ans.setEditable(false);
+        frame.add(ans);
+
+
+
+        JButton times = new JButton("*");
+        JButton minus = new JButton("-");
+        JButton divide = new JButton("/");
+        JButton add = new JButton("+");
+        JButton clear = new JButton("CLR");
+        JButton Random = new JButton("RNDM");
+        times.setBackground(Color.white);
+        minus.setBackground(Color.white);
+        divide.setBackground(Color.white);
+        add.setBackground(Color.white);
+        clear.setBackground(Color.white);
+        Random.setBackground(Color.white);
+
+
+        ButtonHandler2 bhandler = new ButtonHandler2();
+
+
+        arrayBtn = new JButton[10];
+        for(int i=1; i < arrayBtn.length; i++) {
+            arrayBtn[i] = new JButton(Integer.toString(i));
+            frame.add(arrayBtn[i]);
+            arrayBtn[i].addActionListener(bhandler);
+            arrayBtn[i].setBackground(Color.white);
+            if(i == 3)
+            {
+                frame.add(times);
+                frame.add(minus);
+                times.addActionListener(bhandler);
+                minus.addActionListener(bhandler);
+            }
+            if(i == 6)
+            {
+                frame.add(divide);
+                frame.add(add);
+                divide.addActionListener(bhandler);
+                add.addActionListener(bhandler);
+            }
+            if(i == 9)
+            {
+                frame.add(Random);
+                frame.add(clear);
+                Random.addActionListener(bhandler);
+                clear.addActionListener(bhandler);
+            }
+        }
     }
 
     class ButtonHandler2 implements ActionListener {
