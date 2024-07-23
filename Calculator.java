@@ -118,11 +118,65 @@ public class Calculator{
                 clear.addActionListener(bhandler);
             }
         }
+        arrayBtn[0] = new JButton("0");
+        arrayBtn[0].setBackground(Color.white);
+        frame.add(arrayBtn[0]);
+        arrayBtn[0].addActionListener(bhandler);
+
+        JTextArea ans2 = new JTextArea();
+        ans2.setText("");
+        ans2.setEditable(false);
+        frame.add(ans2);
+
+        JTextArea ans1 = new JTextArea();
+        ans1.setText("");
+        ans1.setEditable(false);
+        frame.add(ans1);
+
+        JTextArea ans3 = new JTextArea();
+        ans3.setText("");
+        ans3.setEditable(false);
+        frame.add(ans3);
+
+        JButton JButtonEqual = new JButton("=");
+        JButtonEqual.setBackground(Color.white);
+        JButtonEqual.addActionListener(bhandler);
+        frame.add(JButtonEqual);
+        frame.setVisible(true);
+
+
+
     }
 
     class ButtonHandler2 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-           
+           String command = e.getActionCommand();
+
+            if(command.equals("CLR"))
+            {
+                bool = false;
+                fin1 = false;
+                fin2 = false;
+                add = false;
+                subtract = false;
+                multiply = false;
+                divide = false;
+                num.setText("0");
+                operator.setText("*");
+                num2.setText("0");
+                ans.setText("0");
+
+            }
+            else if(command.equals("*") || command.equals("-")|| command.equals("/")|| command.equals("+"))
+            {
+                System.out.println("hi");
+                bool = true;
+                operator.setText(command);
+                if (command.equals("/")) divide = true;
+                if (command.equals("*")) multiply = true;
+                if (command.equals("-")) subtract = true;
+                if (command.equals("+")) add = true;
+            }
         }
     }
 }
